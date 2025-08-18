@@ -9,6 +9,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Setup Maven
+        uses: stCarolas/setup-maven@v.4.5
+        with:
+          maven-version: 3.8.7      
+      
       # 1. Checkout code
       - name: Checkout source
         uses: actions/checkout@v4
