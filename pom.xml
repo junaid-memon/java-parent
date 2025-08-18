@@ -5,8 +5,92 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.portfolio</groupId>
+    <groupId>com.portfolio.app</groupId>
     <artifactId>java-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <description>Common Java modules</description>
+    <packaging>pom</packaging>
 
+    <properties>
+        <java.version>21</java.version>
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>3.13.0</maven-surefire-plugin.version>
+        <swagger.version>2.2.35</swagger.version>
+        <comons-io.version>2.20.0</comons-io.version>
+        <junit.version>5.13.4</junit.version>
+        <slf4j.version>2.0.17</slf4j.version>
+        <wiremock.version>3.13.1</wiremock.version>
+        <wiremock-standalone.version>3.13.1</wiremock-standalone.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${comons-io.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wiremock</groupId>
+                <artifactId>wiremock</artifactId>
+                <version>${wiremock.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.wiremock</groupId>
+                <artifactId>wiremock-standalone</artifactId>
+                <version>${wiremock-standalone.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                    <configuration>
+                        <includes>
+                            <include>**/*UnitTest</include>
+                            <include>**/*Test</include>
+                            <include>**/*IntegrationTest</include>
+                            <include>**/*IntTest</include>
+                            <include>**/*IT</include>
+                        </includes>
+                        <excludes>
+                            <exclude>**/*LongRunningUnitTest</exclude>
+                            <exclude>**/*ManualTest</exclude>
+                            <exclude>**/*LiveTest</exclude>
+                        </excludes>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>
