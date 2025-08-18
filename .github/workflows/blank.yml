@@ -19,7 +19,7 @@ jobs:
           echo "<settings>
             <servers>
               <server>
-                <id>java-parent</id>
+                <id>github</id>
                 <username>${{ github.actor }}</username>
                 <password>${{ secrets.GITHUB_TOKEN }}</password>
               </server>
@@ -32,7 +32,7 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
-          server-id: java-parent          # must match <id> in pom.xml
+          server-id: github          # must match <id> in pom.xml
           server-username: GITHUB_ACTOR
           server-password: GITHUB_TOKEN
 
