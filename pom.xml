@@ -21,7 +21,17 @@
         <slf4j.version>2.0.17</slf4j.version>
         <wiremock.version>3.13.1</wiremock.version>
         <wiremock-standalone.version>3.13.1</wiremock-standalone.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>Java Parent Packages</name>
+            <url>https://maven.pkg.github.com/junaid-memon/java-parent</url>
+        </repository>
+    </distributionManagement>
 
     <dependencyManagement>
         <dependencies>
@@ -93,12 +103,4 @@
             </plugins>
         </pluginManagement>
     </build>
-
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <name>Java Parent Packages</name>
-            <url>https://maven.pkg.github.com/junaid-memon/java-parent</url>
-        </repository>
-    </distributionManagement>
 </project>
