@@ -96,7 +96,7 @@
 
     <distributionManagement>
         <repository>
-            <id>java-parent</id>
+            <id>github</id>
             <name>Java Parent Packages</name>
             <url>https://maven.pkg.github.com/junaid-memon/java-parent</url>
         </repository>
