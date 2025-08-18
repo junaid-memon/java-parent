@@ -93,4 +93,12 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>java-parent</id>
+            <name>Java Parent Packages</name>
+            <url>https://maven.pkg.github.com/junaid-memon/java-parent</url>
+        </repository>
+    </distributionManagement>
 </project>
