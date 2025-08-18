@@ -1,28 +1,28 @@
-name: Publish Java Parent
+name: Publish package to GitHub Packages
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main" ]  # Only publish from main branch
 
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      # 1. Checkout code
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      # 2. Set up JDK + Maven authentication
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'temurin'
-          cache: maven
-          server-id: java-parent
-          settings-path: ${{ github.workspace }}
+          server-id: github          # must match <id> in pom.xml
           server-username: GITHUB_ACTOR
           server-password: GITHUB_TOKEN
-          
-      - run: mvn -B deploy -DskipTests
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # 3. Build and deploy to GitHub Packages
+      - name: Build & Deploy
+        run: mvn -B deploy -DskipTests
