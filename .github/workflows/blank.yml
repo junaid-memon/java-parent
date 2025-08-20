@@ -24,9 +24,3 @@ jobs:
         run: mvn --batch-mode deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Trigger Child Repo Build
-        uses: peter-evans/repository-dispatch@v3
-        with:
-          token: ${{ secrets.REPO_DISPATCH_TOKEN }}   # classic PAT needed
-          repository: junaid-memon/java-parent-boot
-          event-type: parent-published
